@@ -46,7 +46,7 @@ class BookingDetailScreen extends StatelessWidget {
                   ),
                   SizedBox(height: 8),
                   Text(
-                    "Check pickup, drop & earnings\nbefore accepting",
+                    "Check pickup, drop & schedule\nbefore accepting",
                     style: TextStyle(color: Colors.white70),
                   ),
                 ],
@@ -56,7 +56,7 @@ class BookingDetailScreen extends StatelessWidget {
             const SizedBox(height: 24),
 
             /// 📍 PICKUP
-            _DetailTile(
+            const _DetailTile(
               icon: Icons.radio_button_checked,
               iconColor: Colors.green,
               title: "Pickup Location",
@@ -66,7 +66,7 @@ class BookingDetailScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             /// 📍 DROP
-            _DetailTile(
+            const _DetailTile(
               icon: Icons.location_on,
               iconColor: Colors.red,
               title: "Drop Location",
@@ -76,15 +76,32 @@ class BookingDetailScreen extends StatelessWidget {
             const SizedBox(height: 12),
 
             /// 💰 FARE
-            _DetailTile(
+            const _DetailTile(
               icon: Icons.account_balance_wallet,
               iconColor: AppColors.primary,
               title: "Earnings",
               value: "₹120",
-              valueStyle: const TextStyle(
-                fontWeight: FontWeight.w600,
-                fontSize: 16,
-              ),
+              valueStyle: TextStyle(fontWeight: FontWeight.w600, fontSize: 16),
+            ),
+
+            const SizedBox(height: 12),
+
+            /// 🗓️ SCHEDULER TYPE
+            const _DetailTile(
+              icon: Icons.calendar_today,
+              iconColor: Colors.blue,
+              title: "Scheduler Type",
+              value: "Daily",
+            ),
+
+            const SizedBox(height: 12),
+
+            /// 🚕 RIDE TYPE
+            const _DetailTile(
+              icon: Icons.repeat,
+              iconColor: Colors.deepPurple,
+              title: "Ride Type",
+              value: "Daily Pickup",
             ),
 
             const Spacer(),
@@ -95,7 +112,7 @@ class BookingDetailScreen extends StatelessWidget {
               height: 54,
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: AppColors.primary,
+                  backgroundColor: const Color.fromARGB(255, 6, 246, 246),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(28),
                   ),
@@ -115,7 +132,6 @@ class BookingDetailScreen extends StatelessWidget {
 
             const SizedBox(height: 12),
 
-            /// ❌ DECLINE (optional UI, no logic)
             Center(
               child: TextButton(
                 onPressed: () => Navigator.pop(context),
@@ -132,7 +148,7 @@ class BookingDetailScreen extends StatelessWidget {
   }
 }
 
-/// 🔹 Reusable Detail Row
+/// 🔹 Reusable Detail Tile (UNCHANGED)
 class _DetailTile extends StatelessWidget {
   final IconData icon;
   final Color iconColor;

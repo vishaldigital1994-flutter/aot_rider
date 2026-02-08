@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rider_app/RiderBookingManagementScreen.dart';
 import 'package:rider_app/app_colors.dart';
 import 'package:rider_app/booking_list_screen.dart';
 import 'package:rider_app/help_screen.dart';
@@ -61,7 +62,7 @@ class DashboardScreen extends StatelessWidget {
 
               const SizedBox(height: 24),
 
-              /// 🎨 RIDER BANNER (NO FIXED HEIGHT ❌)
+              /// 🎨 RIDER BANNER
               Container(
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
@@ -72,7 +73,6 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisSize: MainAxisSize.min, // ⭐ KEY FIX
                   children: [
                     const Text(
                       "Ride safe.\nEarn more.",
@@ -85,7 +85,7 @@ class DashboardScreen extends StatelessWidget {
                     const SizedBox(height: 8),
                     const Text(
                       "Complete more rides\nand boost your earnings",
-                      style: TextStyle(color: Colors.white70, fontSize: 14),
+                      style: TextStyle(color: Colors.white70),
                     ),
                     const SizedBox(height: 14),
                     ElevatedButton(
@@ -120,56 +120,81 @@ class DashboardScreen extends StatelessWidget {
 
               const SizedBox(height: 16),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  _ActionItem(
-                    icon: Icons.person,
-                    label: "Profile",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const ProfileScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  _ActionItem(
-                    icon: Icons.motorcycle,
-                    label: "Vehicle",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const VehicleListScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  _ActionItem(
-                    icon: Icons.receipt_long,
-                    label: "Bookings",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (_) => const BookingListScreen(),
-                        ),
-                      );
-                    },
-                  ),
-                  _ActionItem(
-                    icon: Icons.account_balance_wallet,
-                    label: "Wallet",
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => const WalletScreen()),
-                      );
-                    },
-                  ),
-                ],
+              SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    _ActionItem(
+                      icon: Icons.person,
+                      label: "Profile",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const ProfileScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 20),
+
+                    _ActionItem(
+                      icon: Icons.motorcycle,
+                      label: "Vehicle",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const VehicleListScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 20),
+
+                    _ActionItem(
+                      icon: Icons.receipt_long,
+                      label: "Bookings",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const BookingListScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 20),
+
+                    _ActionItem(
+                      icon: Icons.account_balance_wallet,
+                      label: "Wallet",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) => const WalletScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                    const SizedBox(width: 20),
+
+                    _ActionItem(
+                      icon: Icons.route,
+                      label: "Manage Rides",
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (_) =>
+                                const RiderBookingManagementScreen(),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
               ),
 
               const SizedBox(height: 28),
@@ -212,7 +237,7 @@ class DashboardScreen extends StatelessWidget {
                       children: [
                         Text("1 May, 2022"),
                         Text(
-                          "₦2400",
+                          "₹2400",
                           style: TextStyle(fontWeight: FontWeight.w600),
                         ),
                       ],
