@@ -43,7 +43,7 @@ class DashboardScreen extends StatelessWidget {
                         style: TextStyle(color: Colors.grey),
                       ),
                       Text(
-                        "Priya Shah",
+                        "Priya Shaw",
                         style: TextStyle(
                           fontSize: 16,
                           fontWeight: FontWeight.w600,
