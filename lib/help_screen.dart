@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:rider_app/app_colors.dart';
+import 'package:rider_app/create_support_ticket_screen.dart';
+import 'package:rider_app/support_live_chat_screen.dart';
+import 'package:rider_app/support_ticket_list_screen.dart';
 
 class HelpScreen extends StatelessWidget {
   const HelpScreen({super.key});
@@ -17,12 +20,12 @@ class HelpScreen extends StatelessWidget {
           style: TextStyle(fontWeight: FontWeight.w600),
         ),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            /// 🚨 SOS CARD (HIGH PRIORITY)
+            /// 🚨 SOS CARD
             Container(
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -44,7 +47,7 @@ class HelpScreen extends StatelessWidget {
                   const SizedBox(height: 8),
                   const Text(
                     "Use this button only in emergency situations.\n"
-                    "Your location will be shared.",
+                    "Your live location will be shared.",
                     textAlign: TextAlign.center,
                     style: TextStyle(color: Colors.redAccent),
                   ),
@@ -86,7 +89,6 @@ class HelpScreen extends StatelessWidget {
               "Emergency Contacts",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
             ),
-
             const SizedBox(height: 12),
 
             _HelpTile(
@@ -101,25 +103,100 @@ class HelpScreen extends StatelessWidget {
               },
             ),
 
-            const SizedBox(height: 24),
+            const SizedBox(height: 12),
 
-            /// 🎧 RIDER SUPPORT
+            _HelpTile(
+              icon: Icons.manage_accounts,
+              title: "Manage Emergency Contacts",
+              subtitle: "Add or edit emergency contacts",
+              trailingIcon: Icons.arrow_forward_ios,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("Manage contacts (MVP)")),
+                );
+              },
+            ),
+
+            const SizedBox(height: 32),
+
+            /// 🎧 SUPPORT
             const Text(
               "Support",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+            ),
+            const SizedBox(height: 12),
+
+            _HelpTile(
+              icon: Icons.support_agent,
+              title: "Rider Support Executive",
+              subtitle: "Direct call support",
+              trailingIcon: Icons.call,
+              onTap: () {
+                ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(
+                    content: Text("Calling support executive (MVP)"),
+                  ),
+                );
+              },
             ),
 
             const SizedBox(height: 12),
 
             _HelpTile(
-              icon: Icons.support_agent,
-              title: "Rider Support",
-              subtitle: "24/7 help available",
+              icon: Icons.chat,
+              title: "Live Chat",
+              subtitle: "Chat with support team",
+              trailingIcon: Icons.arrow_forward_ios,
               onTap: () {
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text("Connecting to support (MVP)")),
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SupportLiveChatScreen(),
+                  ),
                 );
               },
+            ),
+
+            const SizedBox(height: 12),
+
+            _HelpTile(
+              icon: Icons.edit_note,
+              title: "New Enquiry / Complaint",
+              subtitle: "Raise a support ticket",
+              trailingIcon: Icons.arrow_forward_ios,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const CreateSupportTicketScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 12),
+
+            _HelpTile(
+              icon: Icons.list_alt,
+              title: "Support Tickets",
+              subtitle: "View ticket status",
+              trailingIcon: Icons.arrow_forward_ios,
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => const SupportTicketListScreen(),
+                  ),
+                );
+              },
+            ),
+
+            const SizedBox(height: 24),
+
+            /// ℹ️ INFO
+            const Text(
+              "Your safety is our priority.",
+              style: TextStyle(color: Colors.grey, fontSize: 12),
             ),
           ],
         ),
@@ -172,7 +249,7 @@ class _HelpTile extends StatelessWidget {
               ),
             ),
             if (trailingIcon != null)
-              Icon(trailingIcon, color: AppColors.primary),
+              Icon(trailingIcon, color: AppColors.primary, size: 18),
           ],
         ),
       ),
