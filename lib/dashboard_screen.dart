@@ -4,6 +4,7 @@ import 'package:rider_app/app_colors.dart';
 import 'package:rider_app/booking_list_screen.dart';
 import 'package:rider_app/help_screen.dart';
 import 'package:rider_app/profile_screen.dart';
+import 'package:rider_app/rider_notifications_screen.dart';
 import 'package:rider_app/vehicle_list_screen.dart';
 import 'package:rider_app/wallet_screen.dart';
 import '../../services/storage_service.dart';
@@ -53,6 +54,43 @@ class DashboardScreen extends StatelessWidget {
                     ],
                   ),
                   const Spacer(),
+
+                  /// 🔔 Notifications
+                  Stack(
+                    children: [
+                      IconButton(
+                        icon: const Icon(Icons.notifications),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const RiderNotificationsScreen(),
+                            ),
+                          );
+                        },
+                      ),
+                      Positioned(
+                        right: 8,
+                        top: 8,
+                        child: Container(
+                          padding: const EdgeInsets.all(4),
+                          decoration: BoxDecoration(
+                            color: Colors.red,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: const Text(
+                            "3",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 10,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+
                   IconButton(
                     icon: const Icon(Icons.logout),
                     onPressed: () => logout(context),

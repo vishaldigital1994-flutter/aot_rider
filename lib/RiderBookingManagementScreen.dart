@@ -1,5 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:rider_app/RiderLocationRouteScreen.dart';
 import 'package:rider_app/app_colors.dart';
+import 'package:rider_app/booking_detail_screen.dart';
+import 'package:rider_app/live_location_tracking_screen.dart';
+import 'package:rider_app/reschedule_cancel_ride_screen.dart';
+import 'package:rider_app/verify_customer_screen.dart';
+import 'package:rider_app/view_nearby_bookings_screen.dart';
 
 class RiderBookingManagementScreen extends StatelessWidget {
   const RiderBookingManagementScreen({super.key});
@@ -32,21 +38,35 @@ class RiderBookingManagementScreen extends StatelessWidget {
         padding: const EdgeInsets.all(20),
         children: [
           /// 🔹 AVAILABLE BOOKINGS
-          _SectionTitle("Available Bookings"),
+          const _SectionTitle("Available Bookings"),
           _ActionCard(
             icon: Icons.route,
             title: "View Nearby Bookings",
             subtitle: "Multiple bookings on your route",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const ViewNearbyBookingsScreen(),
+                ),
+              );
+            },
           ),
 
-          /// 🔹 LIVE RIDE CONTROLS
-          _SectionTitle("Live Ride"),
+          /// 🔹 LIVE RIDE
+          const _SectionTitle("Live Ride"),
           _ActionCard(
             icon: Icons.location_on,
             title: "Live Location Tracking",
             subtitle: "Track current ride in real time",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const LiveLocationTrackingScreen(),
+                ),
+              );
+            },
           ),
           _ActionCard(
             icon: Icons.share,
@@ -60,41 +80,67 @@ class RiderBookingManagementScreen extends StatelessWidget {
           ),
 
           /// 🔹 CUSTOMER ACTIONS
-          _SectionTitle("Customer Actions"),
+          const _SectionTitle("Customer Actions"),
           _ActionCard(
             icon: Icons.verified_user,
             title: "Verify Customer",
             subtitle: "OTP / Ride confirmation",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => const VerifyCustomerScreen()),
+              );
+            },
           ),
           _ActionCard(
             icon: Icons.sync_problem,
             title: "Reschedule / Cancel Ride",
             subtitle: "Request changes for booking",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const RescheduleCancelRideScreen(),
+                ),
+              );
+            },
           ),
 
-          /// 🔹 RIDE HISTORY
-          _SectionTitle("History"),
+          /// 🔹 RIDE HISTORY (✅ FIXED)
+          const _SectionTitle("History"),
           _ActionCard(
             icon: Icons.history,
             title: "Ride History",
             subtitle: "Completed & cancelled rides",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const BookingDetailScreen(bookingId: 1),
+                ),
+              );
+            },
           ),
 
-          /// 🔹 ROUTES & LOCATIONS
-          _SectionTitle("Saved Routes"),
+          /// 🔹 ROUTES
+          const _SectionTitle("Saved Routes"),
           _ActionCard(
             icon: Icons.bookmark,
             title: "Saved Locations & Routes",
             subtitle: "Frequently used routes",
-            onTap: () {},
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (_) => const RiderLocationRouteScreen(),
+                ),
+              );
+            },
           ),
 
           /// 🔹 ACCESSORIES
-          _SectionTitle("Ride Accessories"),
-          _AccessoryCard(),
+          const _SectionTitle("Ride Accessories"),
+          const _AccessoryCard(),
 
           const SizedBox(height: 30),
         ],
@@ -180,8 +226,10 @@ class _ActionCard extends StatelessWidget {
 }
 
 //////////////////////////////////////////////////
-/// 🔹 ACCESSORY MANAGEMENT
+/// 🔹 ACCESSORIES
 class _AccessoryCard extends StatelessWidget {
+  const _AccessoryCard();
+
   @override
   Widget build(BuildContext context) {
     return Container(
