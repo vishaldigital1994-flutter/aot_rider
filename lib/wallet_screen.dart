@@ -39,7 +39,10 @@ class WalletScreen extends StatelessWidget {
                             const SnackBar(content: Text("Add money (MVP)")),
                           );
                         },
-                        child: const Text("Add Money"),
+                        child: const Text(
+                          "Add Money",
+                          style: TextStyle(color: Colors.white),
+                        ),
                       ),
                     ),
                   ],
